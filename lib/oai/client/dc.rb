@@ -20,9 +20,25 @@ module OAI
           if m.nil?
             m = Dcelement.new(elm)
           else
-            m = [m] << Dcelement.new(elm)
+            if m.is_a?(Array)
+              m << Dcelement.new(elm)
+            else
+              m = [m, Dcelement.new(elm)]
+            end
           end
           @elms[elm.name] = m 
+        end
+        build_attributes
+      end
+    end
+    private
+    def build_attributes
+      @elms.each do |name, value|
+        create_method("#{name}=".to_sym) do |val|
+          instance_variable_set("@" + name, value)
+        end
+        create_method( name.to_sym ) do
+          instance_variable_get("@" + name)
         end
       end
     end

@@ -23,6 +23,7 @@ require 'oai/client/list_identifiers'
 require 'oai/client/list_metadata_formats'
 require 'oai/client/list_records'
 require 'oai/client/list_sets'
+require 'oai/client/dc'
 
 module OAI
 

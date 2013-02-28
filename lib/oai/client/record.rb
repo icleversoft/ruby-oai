@@ -1,5 +1,4 @@
 module OAI
-require 'dc'
   # A class for representing a Record as returned from a `GetRecord`
   # or `ListRecords` request. Each record will have a header and metadata
   # attribute. The header is a {OAI::Header} object and the metadata is

@@ -46,7 +46,7 @@ module OAI
         instance_variable_get("@" + name)
       end
       @elms.each do |name, value|
-        self.instance_variable_set("@" + name, value)
+        self.instance_variable_set("@#{name}", value)
       end
     end
   end

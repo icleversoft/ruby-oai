@@ -32,6 +32,11 @@ module OAI
       end
     end
     private
+
+    def create_method( name, &block )
+      self.class.send( :define_method, name. &block )
+    end
+
     def build_attributes
       @elms.each do |name, value|
         create_method("#{name}=".to_sym) do |val|

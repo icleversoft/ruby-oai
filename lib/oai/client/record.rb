@@ -4,16 +4,17 @@ module OAI
   # or `ListRecords` request. Each record will have a header and metadata
   # attribute. The header is a {OAI::Header} object and the metadata is
   # a `REXML::Element` object for that chunk of XML.
-  #
+  
   # Note: if your {OAI::Client} was configured to use the 'libxml' parser
   # metadata will return a `XML::Node` object instead.
-  class Record
+class Record
     include OAI::XPath
     attr_accessor :header, :metadata, :about
 
     def initialize(element)
       @header = OAI::Header.new xpath_first(element, './/header')
       @metadata = xpath_first(element, './/metadata')
+      Dc.new(@metadata)
       @about = xpath_first(element, './/about')
     end
 

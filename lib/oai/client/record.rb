@@ -14,7 +14,7 @@ class Record
     def initialize(element)
       @header = OAI::Header.new xpath_first(element, './/header')
       @metadata = xpath_first(element, './/metadata')
-      Dc.new(@metadata)
+      @dc = Dc.new(@metadata)
       @about = xpath_first(element, './/about')
     end
 

@@ -38,13 +38,15 @@ module OAI
     end
 
     def build_attributes
+      #Define dynamic methods
+      create_method("#{name}=".to_sym) do |val|
+        instance_variable_set("@" + name, value)
+      end
+      create_method( name.to_sym ) do
+        instance_variable_get("@" + name)
+      end
       @elms.each do |name, value|
-        create_method("#{name}=".to_sym) do |val|
-          instance_variable_set("@" + name, value)
-        end
-        create_method( name.to_sym ) do
-          instance_variable_get("@" + name)
-        end
+        self.instance_variable_set("@" + name, value)
       end
     end
   end

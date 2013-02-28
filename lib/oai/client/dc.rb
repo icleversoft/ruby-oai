@@ -1,7 +1,8 @@
 module OAI
-  class Dc < REXML::Document
+  require 'rexml/document'
+  class Dc 
     def initialize( doc )
-      doc = super.new(doc).root
+      doc = RECML::Document.new(doc).root
       #Bypass first elemet
       doc.elements.first.each do |elm|
         p elm.name

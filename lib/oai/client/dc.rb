@@ -34,7 +34,7 @@ module OAI
     private
 
     def create_method( name, &block )
-      self.class.send( :define_method, name. &block )
+      self.class.send( :define_method, name, &block )
     end
 
     def build_attributes

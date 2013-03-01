@@ -2,6 +2,7 @@ module OAI
   require 'rexml/document'
   class Dcelement
     attr_accessor :name, :value, :lang
+    attr_reader :fields
     def initialize(elm)
       @name = elm.name
       @value = elm.children.first.to_s
@@ -9,7 +10,6 @@ module OAI
     end
   end
   class Dc 
-    attr_accessor :elms
     def initialize( doc )
       @doc = REXML::Document.new(doc.to_s).root
       @elms = {} 
@@ -31,6 +31,11 @@ module OAI
         build_attributes
       end
     end
+
+    def fields
+      @elms.keys
+    end
+
     private
 
     def create_method( name, &block )

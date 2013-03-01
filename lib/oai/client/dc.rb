@@ -16,17 +16,19 @@ module OAI
       #Bypass first element. Work only for dc elements
       unless @doc.elements.first.name.match(/dc/i).nil?
         @doc.elements.first.elements.each do |elm|
-          m = @elms[elm.name]
-          if m.nil?
-            m = Dcelement.new(elm)
-          else
-            if m.is_a?(Array)
-              m << Dcelement.new(elm)
+          unless elm.children.first.to_s.strip.empty?
+            m = @elms[elm.name]
+            if m.nil?
+              m = Dcelement.new(elm)
             else
-              m = [m, Dcelement.new(elm)]
+              if m.is_a?(Array)
+                m << Dcelement.new(elm)
+              else
+                m = [m, Dcelement.new(elm)]
+              end
             end
+            @elms[elm.name] = m 
           end
-          @elms[elm.name] = m 
         end
         build_attributes
       end

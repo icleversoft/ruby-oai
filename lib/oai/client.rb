@@ -117,6 +117,11 @@ module OAI
       end
     end
 
+    def record_url( identifier )
+      "#{@base}?verb=GetRecord&metadataPrefix=oai_dc&identifier=#{identifier}"
+    end
+
+
     # Equivalent to a `Identify` request.
     # You'll get back a `OAI::IdentifyResponse`
     # object which is essentially just a wrapper around a `REXML::Document`

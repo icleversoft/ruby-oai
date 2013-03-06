@@ -2,6 +2,6 @@
 /doc/
 /coverage*
 /.yardoc/
-
+*.swp
 # Exclude Gemfile.lock (best practice for gems)
 Gemfile.lock

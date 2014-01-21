@@ -13,6 +13,7 @@ module OAI
     def initialize( doc )
       @doc = REXML::Document.new(doc.to_s).root
       @elms = {} 
+      return if @doc.nil?
       #Bypass first element. Work only for dc elements
       unless @doc.elements.first.name.match(/dc/i).nil?
         @doc.elements.first.elements.each do |elm|
